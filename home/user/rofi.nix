@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.rofi;
 
-    extraConfig = {
+    settings = {
       modi = "run,drun,window";
       show-icons = true;
       icon-theme = "Oranchelo";

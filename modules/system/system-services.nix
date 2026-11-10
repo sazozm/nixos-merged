@@ -31,8 +31,6 @@
     };
 
     systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
-    services.journald.extraConfig = ''
-      SystemMaxUse=500M
-    '';
+    services.journald.settings.Journal.SystemMaxUse = "500M";
   };
 }

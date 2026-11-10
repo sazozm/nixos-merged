@@ -11,7 +11,7 @@
       system-config-printer
       playerctl
       onlyoffice-desktopeditors
-      libreoffice-still
+      libreoffice-stable
       jdk
       unrar
       heroic
