@@ -1,7 +1,7 @@
 # NixOS + Home Manager configuration
 
 Flake-based configuration for a single AMD desktop, built with `flake-parts`,
-`import-tree` and Home Manager. User: `sazozm`. Config lives in
+`import-tree` and Home Manager. Config lives in
 `/home/sazozm/.configs/nixos-merged`.
 
 ## Structure
