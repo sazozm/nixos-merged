@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  username = "sazozm";
+in
 {
   flake.nixosModules.preferences = { lib, ... }: {
     options.preferences = {
@@ -9,11 +12,15 @@
       stateVersion = lib.mkOption {
         type = lib.types.str;
       };
+      configDir = lib.mkOption {
+        type = lib.types.str;
+      };
     };
 
     config.preferences = {
-      username = "sazozm";
+      inherit username;
       stateVersion = "26.05";
+      configDir = "/home/${username}/.configs/nixos-merged";
     };
   };
 }

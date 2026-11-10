@@ -6,6 +6,7 @@ if [ "$#" -eq 0 ]; then
   set -- nix build "${FLAKE}#nixosConfigurations.nixos.config.system.build.toplevel" --no-link
 fi
 
+# shellcheck disable=SC2016
 systemd-run --user --scope -p MemoryAccounting=yes -- bash -c '
   set -euo pipefail
   cgroup="/sys/fs/cgroup$(cut -d: -f3 /proc/self/cgroup)"

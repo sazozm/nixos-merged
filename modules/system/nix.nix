@@ -41,7 +41,7 @@
 
     programs.nh = {
       enable = true;
-      flake = "/home/${config.preferences.username}/.configs/nixos-merged";
+      flake = config.preferences.configDir;
       clean = {
         enable = true;
         dates = "weekly";
