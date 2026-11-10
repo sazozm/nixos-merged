@@ -39,6 +39,7 @@
 
   programs.nixvim.nixpkgs.source = inputs.nixpkgs;
   stylix.targets.obsidian.enable = true;
+  stylix.targets.rofi.enable = false;
 
   programs.sonora = {
     enable = true;
