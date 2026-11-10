@@ -68,6 +68,7 @@
     qbittorrent
     yazi
     lazygit
+    gh
     ripgrep
     wl-clipboard
     foot
