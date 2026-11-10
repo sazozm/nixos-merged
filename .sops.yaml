@@ -1,0 +1,10 @@
+keys:
+  - &sazozm age1hhv669y7kznvcuy6v4d67hwsapu05egvedz5jvhvzaj77rtthqjqpvrw90
+  - &nixos age14xxyv3m5x43ssgr3r89urgwhsnk9ljl3q36e3htydhdhpucceyhs0gvmks
+
+creation_rules:
+  - path_regex: secrets/.*\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *sazozm
+          - *nixos
