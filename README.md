@@ -17,7 +17,6 @@ modules/hardware/             amd, bluetooth, input
 modules/services/             networking, ssh, printing, avahi, murmur, sops
 modules/home/                 Home Manager wiring
 home/user/                    per-user programs and dotfiles
-home/optional/ (removed)      optional modules were pruned
 scripts/                      helper shell scripts exposed as packages
 secrets/                      sops-encrypted secrets (age)
 templates/                    project templates

@@ -18,7 +18,6 @@ in
     "x-scheme-handler/http" = [ "firefox.desktop" ];
     "x-scheme-handler/https" = [ "firefox.desktop" ];
     "x-scheme-handler/about" = [ "firefox.desktop" ];
-    # "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
     "x-scheme-handler/tg" = [ "org.ayugram.desktop.desktop" ];
   };
 

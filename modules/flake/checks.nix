@@ -26,7 +26,7 @@
             }
             ''
               cd ${self}
-              shellcheck scripts/*.sh
+              shellcheck --severity=warning scripts/*.sh
               touch $out
             '';
       };

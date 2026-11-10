@@ -18,8 +18,15 @@ LINE=$(echo "$THEMES" | grep -F -m1 "$CHOSEN|")
 SPEC=$(echo "$LINE" | cut -d'|' -f2)
 WALL=$(echo "$LINE" | cut -d'|' -f3)
 
-if ! sudo system-theme-switch "$SPEC"; then
-  notify-send -u critical "System Theme" "Activation reported errors. Check: systemctl status home-manager-$USER"
+SWITCH_BIN="$(readlink -f "$(command -v system-theme-switch || true)")"
+
+if [ -z "$SWITCH_BIN" ] || [ ! -x "$SWITCH_BIN" ]; then
+  notify-send -u critical "System Theme" "system-theme-switch not found. Run nh os switch first."
+  exit 1
+fi
+
+if ! sudo "$SWITCH_BIN" "$SPEC"; then
+  notify-send -u critical "System Theme" "Activation failed. See the theme switch output for details."
   exit 1
 fi
 
