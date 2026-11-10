@@ -21,7 +21,6 @@
         "root"
         "@wheel"
       ];
-      warn-dirty = false;
       download-buffer-size = 524288000;
       max-jobs = "auto";
       connect-timeout = 5;
@@ -32,10 +31,7 @@
     nix.daemonCPUSchedPolicy = "idle";
     nix.daemonIOSchedPriority = 7;
 
-    nixpkgs.config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ "pnpm-10.29.2" ];
-    };
+    nixpkgs.config.allowUnfree = true;
 
     nixpkgs.overlays = [
       (final: prev: {

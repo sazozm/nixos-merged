@@ -5,7 +5,7 @@
     imports = [ inputs.sops-nix.nixosModules.sops ];
 
     sops = {
-      defaultSopsFile = ../../secrets/demo.yaml;
+      defaultSopsFile = ../../secrets/services.yaml;
       validateSopsFiles = true;
 
       age = {
@@ -15,6 +15,7 @@
 
       secrets = {
         demo = {
+          sopsFile = ../../secrets/demo.yaml;
           key = "demo";
           owner = config.preferences.username;
         };
