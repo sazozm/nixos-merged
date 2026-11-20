@@ -11,8 +11,8 @@
     services.earlyoom = {
       enable = true;
       enableNotifications = true;
-      freeMemThreshold = 5;
-      freeSwapThreshold = 5;
+      freeMemThreshold = 12;
+      freeSwapThreshold = 10;
     };
     services.power-profiles-daemon.enable = true;
 

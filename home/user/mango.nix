@@ -9,13 +9,13 @@
       xkb_rules_options = "grp:caps_toggle";
       repeat_delay = 200;
       repeat_rate = 50;
-      numlockon = 1;
+      numlock_on = 1;
 
       disable_trackpad = 0;
       trackpad_accel_speed = 0.7;
       trackpad_accel_profile = 1;
 
-      monitorrule = [ ];
+      monitor_rule = [ ];
 
       env = [
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
@@ -23,23 +23,23 @@
       ];
       xwayland_persistence = 1;
 
-      exec-once = [
+      exec_once = [
         "noctalia"
         "xwayland-satellite"
         "udiskie --automount --notify"
       ];
 
-      borderpx = 2;
-      focuscolor = "0x${config.lib.stylix.colors.base0E}ff";
-      overlaycolor = "0x${config.lib.stylix.colors.base0D}ff";
-      bordercolor = "0x${config.lib.stylix.colors.base02}ff";
-      urgentcolor = "0x${config.lib.stylix.colors.base08}ff";
-      maximizescreencolor = "0x${config.lib.stylix.colors.base0E}ff";
+      border_px = 2;
+      focus_color = "0x${config.lib.stylix.colors.base0E}ff";
+      overlay_color = "0x${config.lib.stylix.colors.base0D}ff";
+      border_color = "0x${config.lib.stylix.colors.base02}ff";
+      urgent_color = "0x${config.lib.stylix.colors.base08}ff";
+      maximized_screen_color = "0x${config.lib.stylix.colors.base0E}ff";
 
-      gappih = 10;
-      gappiv = 10;
-      gappoh = 10;
-      gappov = 10;
+      gap_inner_horizontal = 10;
+      gap_inner_vertical = 10;
+      gap_outer_horizontal = 10;
+      gap_outer_vertical = 10;
 
       border_radius = 0;
       no_radius_when_single = 0;
@@ -71,8 +71,9 @@
 
       animation_fade_in = 1;
       animation_fade_out = 1;
-      fadein_begin_opacity = 0.4;
-      fadeout_begin_opacity = 0.9;
+      fade_in_begin_opacity = 0.4;
+      fade_out_begin_opacity = 0.9;
+
       zoom_initial_ratio = 0.8;
       zoom_end_ratio = 0.8;
 
@@ -81,13 +82,13 @@
       animation_duration_move = 450;
       animation_duration_tag = 350;
 
-      animation_curve_open = "0.16,1.0,0.3,1.0";
-      animation_curve_close = "0.4,0.0,0.6,1.0";
-      animation_curve_move = "0.22,1.0,0.36,1.0";
-      animation_curve_tag = "0.22,1.0,0.36,1.0";
-      animation_curve_focus = "0.22,1.0,0.36,1.0";
-      animation_curve_opafadein = "0.16,1.0,0.3,1.0";
-      animation_curve_opafadeout = "0.4,0.0,0.6,1.0";
+      animation_curve_open = "0.16,1.0,0.3,1";
+      animation_curve_close = "0.4,0.0,0.6,1";
+      animation_curve_move = "0.22,1.0,0.36,1";
+      animation_curve_tag = "0.22,1.0,0.36,1";
+      animation_curve_focus = "0.22,1.0,0.36,1";
+      animation_curve_opacity_fade_in = "0.16,1.0,0.3,1";
+      animation_curve_opacity_fade_out = "0.4,0.0,0.6,1";
 
       tag_animation_direction = 1;
 
@@ -104,33 +105,35 @@
 
       dwindle_split_ratio = 0.5;
       dwindle_smart_split = 0;
-      dwindle_hsplit = 1;
-      dwindle_vsplit = 1;
+      dwindle_horizontal_split = 1;
+      dwindle_vertical_split = 1;
       dwindle_drop_simple_split = 1;
       dwindle_manual_split = 2;
 
-      overviewgappi = 5;
-      overviewgappo = 10;
+      overview_gap_inner = 5;
+      overview_gap_outer = 10;
+
       focus_on_activate = 1;
-      sloppyfocus = 1;
-      warpcursor = 1;
+      sloppy_focus = 1;
+      warp_cursor = 1;
+
       axis_bind_apply_timeout = 10;
       no_border_when_single = 1;
 
-      windowrule = [
-        "appid:^pavucontrol$,isfloating:1"
-        "appid:^dev.noctalia.Noctalia$,isfloating:1"
-        "appid:^imv$,isfloating:1"
-        "appid:^mpv$,isfloating:1"
-        "appid:^file-roller$,isfloating:1"
-        "appid:^org.gnome.FileRoller$,isfloating:1"
-        "appid:^xdg-desktop-portal-gtk$,isfloating:1"
-        "title:^Open File$,isfloating:1"
-        "title:^Save File$,isfloating:1"
-        "title:^Confirm to replace files$,isfloating:1"
+      window_rule = [
+        "app_id:^pavucontrol$,is_floating:1"
+        "app_id:^dev.noctalia.Noctalia$,is_floating:1"
+        "app_id:^imv$,is_floating:1"
+        "app_id:^mpv$,is_floating:1"
+        "app_id:^file-roller$,is_floating:1"
+        "app_id:^org.gnome.FileRoller$,is_floating:1"
+        "app_id:^xdg-desktop-portal-gtk$,is_floating:1"
+        "title:^Open File$,is_floating:1"
+        "title:^Save File$,is_floating:1"
+        "title:^Confirm to replace files$,is_floating:1"
       ];
 
-      tagrule = [
+      tag_rule = [
         "id:1,layout_name:scroller"
         "id:2,layout_name:scroller"
         "id:3,layout_name:scroller"
@@ -244,7 +247,7 @@
         "SUPER+SHIFT,UP,tagtoleft"
       ];
 
-      keymode = {
+      key_mode = {
         resize = {
           bind = [
             "NONE,h,resizewin,-30,0"

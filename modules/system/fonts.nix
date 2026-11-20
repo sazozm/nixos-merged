@@ -11,8 +11,6 @@
       nerd-fonts.jetbrains-mono
       liberation_ttf
       corefonts
-      freetype
-      pkgsi686Linux.freetype
     ];
 
     fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" ];

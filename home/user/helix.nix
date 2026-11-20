@@ -1,5 +1,16 @@
 { pkgs, ... }:
 
+let
+  neocmakelsp = pkgs.neocmakelsp.overrideAttrs (old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.pkg-config ];
+    buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.oniguruma ];
+  });
+
+  gersemi = pkgs.gersemi.overrideAttrs (old: {
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.pkg-config ];
+    buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.sqlite ];
+  });
+in
 {
   programs.helix = {
     enable = true;

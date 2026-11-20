@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 {
-  flake.nixosModules.nix = { config, ... }: {
+  flake.nixosModules.nix = { config, lib, ... }: {
     nix.settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -9,15 +9,15 @@
         "flakes"
       ];
       http2 = false;
-      substituters = [
-        "https://cache.nixos.org"
+      substituters = lib.mkForce [
+        "https://cache.nixos.org/"
         "https://nix-community.cachix.org"
       ];
-      trusted-public-keys = [
+      trusted-public-keys = lib.mkForce [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-      trusted-users = [
+      trusted-users = lib.mkForce [
         "root"
         "@wheel"
       ];

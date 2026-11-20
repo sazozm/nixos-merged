@@ -42,7 +42,7 @@ nh os boot  ~/.configs/nixos-merged   # set next boot
 sudo nixos-rebuild switch --flake ~/.configs/nixos-merged#nixos
 ```
 
-Fish shortcuts: `nix-update`, `nix-reb`, `nix-test`.
+Fish shortcuts: `nix-update`, `nix-reb`, `nix-test`, `nix-clean`.
 
 ## Themes (specialisations)
 
@@ -72,6 +72,7 @@ should set `sopsFile` explicitly when it lives elsewhere.
 ```sh
 nix flake check          # formatting + shellcheck checks
 nix fmt                  # format all .nix files with nixfmt
+nix fmt -- --check       # check formatting without writing
 nix build .#checks.x86_64-linux.formatting .#checks.x86_64-linux.shellcheck
 ```
 
