@@ -77,6 +77,11 @@ let
           builtins.readFile ../../scripts/verify-config.sh
         )
       ))
+      (pkgs.writeShellScriptBin "nix-update-input" (
+        builtins.replaceStrings [ "@flakeDir@" ] [ prefs.configDir ] (
+          builtins.readFile ../../scripts/update-input.sh
+        )
+      ))
       (pkgs.writeShellScriptBin "mic-denoise" ''
         #!/usr/bin/env bash
         set -euo pipefail

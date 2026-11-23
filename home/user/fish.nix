@@ -126,6 +126,7 @@ in
       nix-reb = "nh os switch ~/.configs/nixos-merged";
       nix-test = "nh os test ~/.configs/nixos-merged";
       nix-verify = "verify-config";
+      nix-ui = "nix-update-input";
       nix-clean = "nh clean all --keep-since 14d --keep 5";
       demo-secret = "cat /run/secrets/demo";
 

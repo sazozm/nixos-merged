@@ -54,13 +54,16 @@ nh os boot  ~/.configs/nixos-merged   # set next boot
 sudo nixos-rebuild switch --flake ~/.configs/nixos-merged#nixos
 ```
 
-Fish shortcuts: `nix-reb`, `nix-test`, `nix-verify`, `nix-clean` (abbreviations
-are in `home/user/fish.nix`).
+Fish shortcuts: `nix-reb`, `nix-test`, `nix-verify`, `nix-ui`, `nix-clean`
+(abbreviations are in `home/user/fish.nix`).
 
 Before switching, run `verify-config` — it checks the flake, dry-runs both
-toplevels and validates key options. Update inputs one at a time
-(`nix flake update mango`); a blanket `nix flake update` can pull breaking
-changes (e.g. nixpkgs removing wayprompt, sonora pulling `wgpu` via crane).
+toplevels and validates key options. Update inputs one at a time with
+`nix-update-input <name>` (fish: `nix-ui <name>`): it backs up `flake.lock`,
+updates only that input, shows the diff and runs `verify-config`, restoring the
+old lock automatically if verification fails. Avoid blanket `nix flake update`
+— it previously pulled breaking changes (nixpkgs removing wayprompt, sonora
+pulling `wgpu` via crane).
 
 ## Themes (specialisations)
 
