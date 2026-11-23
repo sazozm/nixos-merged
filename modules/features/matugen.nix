@@ -32,7 +32,7 @@ let
 
       xdg.dataFile."TelegramDesktop/themes/stylix.tdesktop-theme".source =
         "${telegramTheme}/stylix.tdesktop-theme";
-      xdg.dataFile."AyugramDesktop/themes/stylix.tdesktop-theme".source =
+      xdg.dataFile."AyuGramDesktop/themes/stylix.tdesktop-theme".source =
         "${telegramTheme}/stylix.tdesktop-theme";
     };
 in
