@@ -88,6 +88,22 @@ All `spawn` binds use `bindn` (no key-repeat spam); media keys stay in `bindl`.
 `SUPER+SHIFT,TAB` is focuslast. Updating the mango binary requires a session
 restart, not just `SUPER+SHIFT+p`.
 
+### Hybrid matugen theming
+
+Stylix stays the source of truth. `matugen` is used in addition, at build time,
+to generate a Telegram Desktop theme (`templates/matugen/telegram.tdesktop-theme`)
+from the same accent colour as the active stylix theme. The result is installed
+as `stylix.tdesktop-theme` for both Telegram Desktop and Ayugram. Telegram cannot
+apply themes automatically: open the theme file from the Telegram settings once;
+after a theme switch, restart the client to pick up the regenerated file.
+
+Vesktop/Discord is already themed by stylix through its Vencord target
+(`Vencord/themes/stylix.theme.css` plus `enabledThemes = [ "stylix.css" ]`).
+
+Programs without a stylix target and no matugen template: osu!lazer, Viber,
+Steam/Heroic, and electron/Qt apps that ignore qt5ct/qt6ct (OnlyOffice, OBS,
+Kdenlive, qBittorrent).
+
 ## Secrets (sops-nix)
 
 Age recipients are declared in `.sops.yaml`. The private key is expected at

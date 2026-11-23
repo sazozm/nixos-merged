@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    matugen = {
+      url = "github:InioX/matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vimyt-src = {
       url = "github:Sadoaz/vimyt";
       flake = false;
