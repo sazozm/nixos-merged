@@ -14,9 +14,9 @@ fi
 
 eo_pid="$(systemctl show -p MainPID --value earlyoom 2>/dev/null || true)"
 if [ -n "$eo_pid" ] && [ "$eo_pid" != "0" ]; then
-  eo_args="$(tr '\0' ' ' < "/proc/$eo_pid/cmdline" 2>/dev/null || true)"
-  if [[ "$eo_args" == *"-m5"* && "$eo_args" == *"-s5"* ]]; then
-    ok "earlyoom thresholds (-m5 -s5)"
+  eo_args="$(tr '\0' '\n' < "/proc/$eo_pid/environ" 2>/dev/null | sed -n 's/^EARLYOOM_ARGS=//p' || true)"
+  if [[ "$eo_args" == *"-m @eoMem@"* && "$eo_args" == *"-s @eoSwap@"* ]]; then
+    ok "earlyoom thresholds (-m @eoMem@ -s @eoSwap@)"
   else
     bad "earlyoom thresholds: ${eo_args:-unknown}"
   fi
@@ -24,7 +24,7 @@ else
   bad "earlyoom not running"
 fi
 
-themes=(gruvbox sunset lain rey-light kitty light)
+themes=(@themes@)
 for theme in "${themes[@]}"; do
   if [ -x "/run/current-system/specialisation/$theme/bin/switch-to-configuration" ]; then
     ok "theme $theme"

@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.displayManager = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
@@ -10,4 +10,8 @@
       extraPackages = with pkgs; [ kdePackages.qtmultimedia ];
     };
   };
+in
+{
+  config.flake.nixosModules.displayManager = module;
+  config.dendrite.nixos = module;
 }

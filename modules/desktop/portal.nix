@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.portal = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     xdg.portal = {
       enable = true;
       wlr.enable = true;
@@ -18,4 +18,8 @@
       };
     };
   };
+in
+{
+  config.flake.nixosModules.portal = module;
+  config.dendrite.nixos = module;
 }

@@ -14,7 +14,7 @@ in
 
   home.file = {
     "${vaultPath}/.obsidian/appearance.json".text = builtins.toJSON {
-      accentColor = "cba6f7";
+      accentColor = config.lib.stylix.colors.base0E;
       theme = "obsidian";
       cssTheme = "Catppuccin";
     };

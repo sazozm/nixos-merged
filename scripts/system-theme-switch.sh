@@ -2,7 +2,7 @@
 set -euo pipefail
 
 PROFILE_ROOT="/nix/var/nix/profiles/system"
-THEMES=(default gruvbox sunset lain rey-light kitty light)
+THEMES=(@themes@)
 
 theme="${1:-}"
 

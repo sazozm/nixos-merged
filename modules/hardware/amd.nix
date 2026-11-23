@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.amd = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     hardware.cpu.amd.updateMicrocode = true;
     hardware.enableRedistributableFirmware = true;
 
@@ -12,4 +12,8 @@
       extraPackages32 = with pkgs; [ obs-studio-plugins.obs-vkcapture ];
     };
   };
+in
+{
+  config.flake.nixosModules.amd = module;
+  config.dendrite.nixos = module;
 }

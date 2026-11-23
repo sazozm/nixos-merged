@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-FLAKE="${NH_FLAKE:-${FLAKE:-$HOME/.configs/nixos-merged}}"
+FLAKE="${NH_FLAKE:-${FLAKE:-@flakeDir@}}"
 BASE_CONFIG="${BASE_CONFIG:-nixos-bootstrap}"
 CONFIG="${CONFIG:-nixos}"
 MAX_JOBS="${MAX_JOBS:-2}"
 CORES="${CORES:-4}"
 
-THEMES=(
-  gruvbox
-  sunset
-  lain
-  rey-light
-  kitty
-  light
-)
+THEMES=(@themes@)
 
 if [ ! -f "$FLAKE/flake.nix" ]; then
   printf 'error: flake not found at %s\n' "$FLAKE" >&2

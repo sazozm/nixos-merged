@@ -123,9 +123,9 @@ in
       cw = "cargo watch -x run";
       cnew = "cargo new";
 
-      nix-update = "nh os switch ~/.configs/nixos-merged";
       nix-reb = "nh os switch ~/.configs/nixos-merged";
       nix-test = "nh os test ~/.configs/nixos-merged";
+      nix-verify = "verify-config";
       nix-clean = "nh clean all --keep-since 14d --keep 5";
       demo-secret = "cat /run/secrets/demo";
 
@@ -135,7 +135,7 @@ in
       noctalia-conf = "$EDITOR ~/.configs/nixos-merged/home/user/noctalia.nix";
       foot-conf = "$EDITOR ~/.configs/nixos-merged/home/user/foot.nix";
       nixvim-conf = "$EDITOR ~/.configs/nixos-merged/home/user/nixvim.nix";
-      mango-conf = "$EDITOR ~/.configs/nixos-merged/home/user/mango.nix";
+      mango-conf = "$EDITOR ~/.configs/nixos-merged/modules/features/mango.nix";
     };
 
     shellAliases = {
@@ -146,7 +146,7 @@ in
       fastmake = "cmake -B build -GNinja && ninja -C build";
       nf = "fastfetch";
       sg = "mangohud";
-      gs = "gamescope";
+      gsc = "gamescope";
       gm = "gamemoderun";
     };
 
@@ -160,6 +160,24 @@ in
             echo "No executable binary found in build/"
             return 1
         end
+      '';
+
+      create_cpp_project = ''
+        if test (count $argv) -eq 0; echo "Usage: create_cpp_project <name>"; return 1; end
+        set -l name $argv[1]
+        mkdir -p $name/src
+        echo "use flake ~/.configs/nixos-merged#cpp-gui" > $name/.envrc
+        echo "cmake_minimum_required(VERSION 3.20)
+        project($name LANGUAGES CXX)
+        set(CMAKE_CXX_STANDARD 23)
+        add_executable($name src/main.cpp)
+        target_compile_options($name PRIVATE -Wall -Wextra -Wpedantic)" > $name/CMakeLists.txt
+        echo "#include <iostream>
+        int main() {
+            std::cout << \"Hello, C++!\" << std::endl;
+            return 0;
+        }" > $name/src/main.cpp
+        echo "Created $name — cd $name && cmake -S . -B build -G Ninja && ninja -C build"
       '';
 
       create_raylib_project = ''
@@ -402,7 +420,7 @@ in
       '';
 
       gbf = ''
-        set branch (git branch --all | grep -v HEAD | fzf --prompt='branch ❯ ' | string replace -r 'remotes/origin/' "")
+        set branch (git branch --all | grep -v HEAD | fzf --prompt='branch ❯ ' | string trim | string replace -r '^\* ' '''' | string replace -r '^remotes/origin/' '''')
         if test -n "$branch"
             git checkout $branch
         end

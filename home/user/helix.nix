@@ -187,6 +187,14 @@ in
           command = "vscode-css-language-server";
           args = [ "--stdio" ];
         };
+        vscode-html-language-server = {
+          command = "vscode-html-language-server";
+          args = [ "--stdio" ];
+        };
+        vscode-json-language-server = {
+          command = "vscode-json-language-server";
+          args = [ "--stdio" ];
+        };
         taplo = {
           command = "taplo";
           args = [
@@ -316,6 +324,30 @@ in
             ];
           };
           language-servers = [ "vscode-css-language-server" ];
+        }
+        {
+          name = "html";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = [
+              "--parser"
+              "html"
+            ];
+          };
+          language-servers = [ "vscode-html-language-server" ];
+        }
+        {
+          name = "json";
+          auto-format = true;
+          formatter = {
+            command = "prettier";
+            args = [
+              "--parser"
+              "json"
+            ];
+          };
+          language-servers = [ "vscode-json-language-server" ];
         }
         {
           name = "toml";

@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WALLPAPERS="$HOME/.configs/nixos-merged/wallpapers"
-
 PALETTE="stylix"
 
 THEMES=(
-  "🟣 Purple|default|dark|$WALLPAPERS/purpleWallpaper.png"
-  "🌾 Gruvbox Rainbow|gruvbox|dark|$WALLPAPERS/gruvbox-dark-rainbow.png"
-  "🌇 Cosy Sunset|sunset|dark|$WALLPAPERS/chillhop.com-cosy_retreat_sunset.png"
-  "🖤 Grey Lain|lain|dark|$WALLPAPERS/grey_lain_wallpaper.jpg"
-  "☀️ Gruvbox Light|light|light|$WALLPAPERS/frieren_gruvbox.png"
-  "💠 Blue Light|rey-light|light|$WALLPAPERS/rei.jpg"
-  "🎀 Hello Kitty|kitty|light|$WALLPAPERS/hello_kitty.jpg"
+@themeEntries@
 )
 
 usage() {

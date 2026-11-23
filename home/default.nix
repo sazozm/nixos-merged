@@ -1,21 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  username,
-  stateVersion,
-  homeDirectory,
-  ...
-}:
+{ pkgs, ... }:
 
 {
-  imports = [ ./user ];
-  home.stateVersion = stateVersion;
-
-  home.username = username;
-  home.homeDirectory = homeDirectory;
-
   programs.home-manager.enable = true;
 
   home.sessionPath = [
@@ -37,24 +22,11 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  programs.nixvim.nixpkgs.source = inputs.nixpkgs;
   stylix.targets.obsidian.enable = true;
   stylix.targets.rofi.enable = false;
-
-  programs.sonora = {
-    enable = true;
-    settings = {
-      provider = "youtube";
-      appearance.theme = "dark";
-    };
-  };
+  stylix.targets.wayprompt.enable = false;
 
   home.packages = with pkgs; [
-    (writeShellScriptBin "system-theme-switcher" (
-      builtins.readFile ../scripts/system-theme-switcher.sh
-    ))
-    (writeShellScriptBin "check-themes" (builtins.readFile ../scripts/check-themes.sh))
-    (writeShellScriptBin "system-health" (builtins.readFile ../scripts/system-health.sh))
     (writeShellScriptBin "measure-eval" (builtins.readFile ../scripts/measure-eval.sh))
 
     opencode

@@ -10,7 +10,7 @@
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "yazi.desktop" ];
-      "text/plain" = [ "helix.desktop" ];
+      "text/plain" = [ "Helix.desktop" ];
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
       "image/png" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];
@@ -22,16 +22,16 @@
       "audio/mpeg" = [ "mpv.desktop" ];
       "audio/flac" = [ "mpv.desktop" ];
       "audio/ogg" = [ "mpv.desktop" ];
-      "application/zip" = [ "file-roller.desktop" ];
-      "application/x-tar" = [ "file-roller.desktop" ];
-      "application/gzip" = [ "file-roller.desktop" ];
-      "application/x-7z-compressed" = [ "file-roller.desktop" ];
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "libreoffice.desktop" ];
+      "application/zip" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
+      "application/gzip" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-7z-compressed" = [ "org.gnome.FileRoller.desktop" ];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "calc.desktop" ];
       "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [
-        "libreoffice.desktop"
+        "impress.desktop"
       ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [
-        "libreoffice.desktop"
+        "writer.desktop"
       ];
     };
   };

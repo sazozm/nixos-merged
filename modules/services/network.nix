@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.network = { lib, ... }: {
+let
+  module = { config, lib, ... }: {
     services.resolved = {
       enable = true;
       settings = {
@@ -16,13 +16,10 @@
     };
 
     networking = {
-      hostName = "nixos";
+      hostName = config.preferences.hostName;
       useDHCP = lib.mkDefault true;
 
-      nameservers = [
-        "111.88.96.50"
-        "111.88.96.51"
-      ];
+      nameservers = config.preferences.nameServers;
 
       networkmanager = {
         enable = true;
@@ -36,4 +33,8 @@
       };
     };
   };
+in
+{
+  config.flake.nixosModules.network = module;
+  config.dendrite.nixos = module;
 }

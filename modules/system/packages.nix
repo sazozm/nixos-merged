@@ -1,13 +1,8 @@
-{ ... }:
+{ config, inputs, ... }:
 
-{
-  flake.nixosModules.systemPackages = { pkgs, vimyt, ... }: {
+let
+  module = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
-      (writeScriptBin "Music" ''
-        #!/usr/bin/env bash
-        exec ${pkgs.appimage-run}/bin/appimage-run "$HOME/.local/bin/limusic.AppImage" "$@"
-      '')
-
       system-config-printer
       playerctl
       onlyoffice-desktopeditors
@@ -48,7 +43,7 @@
       zip
       unzip
       p7zip
-      vimyt
+      inputs.self.packages.x86_64-linux.vimyt
       gcc
       clang
       ninja
@@ -57,4 +52,8 @@
       })
     ];
   };
+in
+{
+  config.flake.nixosModules.systemPackages = module;
+  config.dendrite.nixos = module;
 }

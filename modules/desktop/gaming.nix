@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.gaming = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     programs.gamescope = {
       enable = true;
       capSysNice = true;
@@ -23,4 +23,8 @@
       libstrangle
     ];
   };
+in
+{
+  config.flake.nixosModules.gaming = module;
+  config.dendrite.nixos = module;
 }

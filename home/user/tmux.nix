@@ -9,7 +9,7 @@ in
     baseIndex = 1;
     clock24 = true;
     prefix = "C-a";
-    terminal = "foot";
+    terminal = "tmux-256color";
 
     extraConfig = ''
       set-option -sa terminal-overrides ",foot*:Tc"

@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.user = { config, pkgs, ... }: {
+let
+  module = { config, pkgs, ... }: {
     users.users.${config.preferences.username} = {
       isNormalUser = true;
       extraGroups = [
@@ -19,4 +19,8 @@
       shell = pkgs.fish;
     };
   };
+in
+{
+  config.flake.nixosModules.user = module;
+  config.dendrite.nixos = module;
 }

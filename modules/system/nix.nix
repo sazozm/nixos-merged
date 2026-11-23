@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 
-{
-  flake.nixosModules.nix = { config, lib, ... }: {
+let
+  module = { config, lib, ... }: {
     nix.settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -49,4 +49,8 @@
       };
     };
   };
+in
+{
+  config.flake.nixosModules.nix = module;
+  config.dendrite.nixos = module;
 }

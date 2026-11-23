@@ -32,6 +32,22 @@
         };
       };
 
+      appLauncher = {
+        enableClipPreview = true;
+        iconMode = "tabler";
+        showCategories = true;
+        sortByMostUsed = true;
+        terminalCommand = "kitty -e";
+        viewMode = "list";
+      };
+
+      audio = {
+        cavaFrameRate = 30;
+        externalMixer = "pwvucontrol || pavucontrol";
+        visualizerType = "linear";
+        volumeStep = 5;
+      };
+
       backdrop = {
         enabled = false;
         blur_intensity = 0.45;

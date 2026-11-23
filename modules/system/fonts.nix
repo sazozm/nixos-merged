@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.fonts = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
@@ -15,4 +15,8 @@
 
     fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" ];
   };
+in
+{
+  config.flake.nixosModules.fonts = module;
+  config.dendrite.nixos = module;
 }

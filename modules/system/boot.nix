@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.boot = { pkgs, ... }: {
+let
+  module = { pkgs, ... }: {
     boot = {
       tmp.cleanOnBoot = false;
 
@@ -26,4 +26,8 @@
       kernelParams = [ "amd_pstate=active" ];
     };
   };
+in
+{
+  config.flake.nixosModules.boot = module;
+  config.dendrite.nixos = module;
 }

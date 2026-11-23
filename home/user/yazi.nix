@@ -36,11 +36,6 @@
           run = "cd ~/.config";
           desc = "dir";
         }
-        {
-          on = [ "T" ];
-          run = "plugin --sync max-preview";
-          desc = "full";
-        }
       ];
     };
   };

@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.sysctl = {
+let
+  module = {
     boot.kernel.sysctl = {
 
       "vm.swappiness" = 10;
@@ -27,4 +27,8 @@
       "fs.inotify.max_user_instances" = 512;
     };
   };
+in
+{
+  config.flake.nixosModules.sysctl = module;
+  config.dendrite.nixos = module;
 }

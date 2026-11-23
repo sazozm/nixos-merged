@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.locale = {
-    time.timeZone = "Europe/Minsk";
+let
+  module = { config, ... }: {
+    time.timeZone = config.preferences.timeZone;
 
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -18,4 +18,8 @@
       };
     };
   };
+in
+{
+  config.flake.nixosModules.locale = module;
+  config.dendrite.nixos = module;
 }

@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 
-{
-  flake.nixosModules.programs = {
+let
+  module = {
     programs.fish.enable = true;
 
     programs.appimage = {
@@ -13,4 +13,8 @@
 
     services.flatpak.enable = true;
   };
+in
+{
+  config.flake.nixosModules.programs = module;
+  config.dendrite.nixos = module;
 }

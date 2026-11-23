@@ -1,10 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 let
-  username = "sazozm";
-in
-{
-  flake.nixosModules.preferences = { lib, ... }: {
+  prefs = config.dendrite.preferences;
+
+  module = { lib, ... }: {
     options.preferences = {
       username = lib.mkOption {
         type = lib.types.str;
@@ -15,12 +14,30 @@ in
       configDir = lib.mkOption {
         type = lib.types.str;
       };
+      hostName = lib.mkOption {
+        type = lib.types.str;
+      };
+      timeZone = lib.mkOption {
+        type = lib.types.str;
+      };
+      nameServers = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+      };
     };
 
     config.preferences = {
-      inherit username;
-      stateVersion = "26.05";
-      configDir = "/home/${username}/.configs/nixos-merged";
+      inherit (prefs)
+        username
+        stateVersion
+        configDir
+        hostName
+        timeZone
+        nameServers
+        ;
     };
   };
+in
+{
+  config.flake.nixosModules.preferences = module;
+  config.dendrite.nixos = module;
 }

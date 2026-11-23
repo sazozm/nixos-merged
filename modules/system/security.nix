@@ -1,11 +1,15 @@
-{ ... }:
+{ config, lib, ... }:
 
-{
-  flake.nixosModules.security =
+let
+  themeNames = builtins.attrNames config.dendrite.themes;
+
+  module =
     { config, pkgs, ... }:
     let
       themeSwitch = pkgs.writeShellScriptBin "system-theme-switch" (
-        builtins.readFile ../../scripts/system-theme-switch.sh
+        builtins.replaceStrings [ "@themes@" ] [ (lib.concatStringsSep " " themeNames) ] (
+          builtins.readFile ../../scripts/system-theme-switch.sh
+        )
       );
     in
     {
@@ -23,4 +27,8 @@
         }
       ];
     };
+in
+{
+  config.flake.nixosModules.security = module;
+  config.dendrite.nixos = module;
 }

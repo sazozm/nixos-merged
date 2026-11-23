@@ -1,7 +1,9 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 
-{
-  flake.nixosModules.sops = { config, pkgs, ... }: {
+let
+  homeDirectory = config.dendrite.preferences.homeDirectory;
+
+  module = { config, pkgs, ... }: {
     imports = [ inputs.sops-nix.nixosModules.sops ];
 
     sops = {
@@ -9,7 +11,7 @@
       validateSopsFiles = true;
 
       age = {
-        keyFile = "/home/${config.preferences.username}/.config/sops/age/keys.txt";
+        keyFile = "${homeDirectory}/.config/sops/age/keys.txt";
         sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       };
 
@@ -42,4 +44,8 @@
       ssh-to-age
     ];
   };
+in
+{
+  config.flake.nixosModules.sops = module;
+  config.dendrite.nixos = module;
 }
