@@ -13,18 +13,25 @@ let
       telegramTheme =
         pkgs.runCommand "telegram-stylix-theme"
           {
-            nativeBuildInputs = [ matugen ];
+            nativeBuildInputs = [
+              matugen
+              pkgs.imagemagick
+              pkgs.zip
+            ];
           }
           ''
-            mkdir -p "$out"
+            mkdir -p "$out" work
+            cd work
             cp ${telegramTemplate} template.tdesktop-theme
             cat > config.toml <<EOF
             [config]
             [templates.telegram]
             input_path = "template.tdesktop-theme"
-            output_path = "$out/stylix.tdesktop-theme"
+            output_path = "colors.tdesktop-theme"
             EOF
             HOME="$TMPDIR" matugen color hex "${color}" -m "${mode}" -c config.toml
+            magick ${config.stylix.image} -resize 1920x1080 -blur 0x16 background.jpg
+            zip -q -j "$out/stylix.tdesktop-theme" colors.tdesktop-theme background.jpg
           '';
     in
     {

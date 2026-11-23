@@ -92,10 +92,17 @@ restart, not just `SUPER+SHIFT+p`.
 
 Stylix stays the source of truth. `matugen` is used in addition, at build time,
 to generate a Telegram Desktop theme (`templates/matugen/telegram.tdesktop-theme`)
-from the same accent colour as the active stylix theme. The result is installed
-as `stylix.tdesktop-theme` for both Telegram Desktop and Ayugram. Telegram cannot
-apply themes automatically: open the theme file from the Telegram settings once;
-after a theme switch, restart the client to pick up the regenerated file.
+from the same accent colour as the active stylix theme. The current wallpaper
+is resized, blurred and bundled as `background.jpg`, so chat backgrounds change
+with the theme too. The result is a ZIP installed as `stylix.tdesktop-theme`
+for both Telegram Desktop and AyuGram.
+
+Telegram cannot apply a theme automatically on first use. Import it once via
+**Settings → Chat settings → ⋮ → Create new theme → Import existing theme** and
+pick `~/.local/share/TelegramDesktop/themes/stylix.tdesktop-theme`. A locally
+imported theme is reloaded by Telegram when the file changes, so specialisation
+switches are picked up automatically. Do not import the raw template from
+`templates/matugen/` — it still contains `{{...}}` placeholders.
 
 Vesktop/Discord is already themed by stylix through its Vencord target
 (`Vencord/themes/stylix.theme.css` plus `enabledThemes = [ "stylix.css" ]`).
